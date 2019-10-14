@@ -1,6 +1,5 @@
 {
-    "variants": {
-      "": {"model":  "ogm:block/rubyore"}
-    },
-
+  "variants": {
+    "": { "model": "ogm:block/rubyore" }
+  }
 }
