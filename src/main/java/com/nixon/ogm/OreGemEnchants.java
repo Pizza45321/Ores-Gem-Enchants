@@ -4,6 +4,7 @@ import com.nixon.ogm.blocks.ModBlocks;
 import com.nixon.ogm.blocks.RubyOre;
 import com.nixon.ogm.setup.ClientProxy;
 import com.nixon.ogm.setup.IProxy;
+import com.nixon.ogm.setup.ModSetup;
 import com.nixon.ogm.setup.ServerProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -31,17 +32,17 @@ import java.util.stream.Collectors;
 @Mod("ogm")
 public class OreGemEnchants
 {
-    // Directly reference a log4j logger.
+    public static ModSetup setup = new ModSetup();
     private static final Logger LOGGER = LogManager.getLogger();
     public static IProxy proxy = DistExecutor.runForDist(() ->() -> new ClientProxy(), () -> () -> new ServerProxy());
     public OreGemEnchants() {
-        // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
-
+        setup.init();
+        proxy.init();
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
@@ -54,6 +55,8 @@ public class OreGemEnchants
         }
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
+            Item.Properties properties = new Item.Properties()
+                    .group(setup.itemGroup);
             event.getRegistry().register(new BlockItem(ModBlocks.RubyOre, new Item.Properties()).setRegistryName("rubyore"));
         }
     }
