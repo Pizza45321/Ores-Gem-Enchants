@@ -6,7 +6,7 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "item",
           "name": "ogm:rubyore"
         }
       ],
@@ -17,3 +17,4 @@
       ]
     }
   ]
+}

@@ -2,6 +2,8 @@ package com.nixon.ogm;
 
 import com.nixon.ogm.blocks.ModBlocks;
 import com.nixon.ogm.blocks.RubyOre;
+import com.nixon.ogm.items.ModItems;
+import com.nixon.ogm.items.Ruby;
 import com.nixon.ogm.setup.ClientProxy;
 import com.nixon.ogm.setup.IProxy;
 import com.nixon.ogm.setup.ModSetup;
@@ -57,7 +59,8 @@ public class OreGemEnchants
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
-            event.getRegistry().register(new BlockItem(ModBlocks.RubyOre, new Item.Properties()).setRegistryName("rubyore"));
+            event.getRegistry().register(new BlockItem(ModBlocks.RubyOre, properties).setRegistryName("rubyore"));
+            event.getRegistry().register(new Ruby());
         }
     }
 }
